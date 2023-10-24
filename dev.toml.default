@@ -1,0 +1,4 @@
+[central]
+base_url = "http://localhost:8383"
+username = "<your email>"
+password = "<your password>"
