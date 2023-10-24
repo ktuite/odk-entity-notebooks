@@ -1,0 +1,15 @@
+<data
+    xmlns:jr="http://openrosa.org/javarosa"
+    xmlns:orx="http://openrosa.org/xforms" id="trees_registration" version="2023_10_24_1">
+    <location>0 0 0 0</location>
+    <species>{{ species }}</species>
+    <circumference>{{ circumference }}</circumference>
+    <intake_notes>test</intake_notes>
+    <meta>
+        <instanceID>uuid:{{ instanceId }}</instanceID>
+        <instanceName>{{ instanceName }}</instanceName>
+        <entity create="1" dataset="trees" id="{{ entityUuid }}">
+            <label>{{ entityLabel }}</label>
+        </entity>
+    </meta>
+</data>

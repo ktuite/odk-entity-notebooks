@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<h:html
+	xmlns="http://www.w3.org/2002/xforms"
+	xmlns:entities="http://www.opendatakit.org/xforms/entities"
+	xmlns:ev="http://www.w3.org/2001/xml-events"
+	xmlns:h="http://www.w3.org/1999/xhtml"
+	xmlns:jr="http://openrosa.org/javarosa"
+	xmlns:odk="http://www.opendatakit.org/xforms"
+	xmlns:orx="http://openrosa.org/xforms"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<h:head>
+		<h:title>Trees registration</h:title>
+		<model entities:entities-version="2022.1.0" odk:xforms-version="1.0.0">
+			<instance>
+				<data id="trees_registration" version="2023_10_24_1">
+					<location/>
+					<species/>
+					<circumference/>
+					<intake_notes/>
+					<meta>
+						<instanceID/>
+						<instanceName/>
+						<entity create="1" dataset="trees" id="">
+							<label/>
+						</entity>
+					</meta>
+				</data>
+			</instance>
+			<bind entities:saveto="geometry" nodeset="/data/location" required="true()" type="geopoint"/>
+			<bind entities:saveto="species" nodeset="/data/species" required="true()" type="string"/>
+			<bind entities:saveto="circumference_cm" nodeset="/data/circumference" required="true()" type="int"/>
+			<bind nodeset="/data/intake_notes" type="string"/>
+			<bind jr:preload="uid" nodeset="/data/meta/instanceID" readonly="true()" type="string"/>
+			<bind calculate="concat( /data/circumference , &quot;cm &quot;,  /data/species )" nodeset="/data/meta/instanceName" type="string"/>
+			<bind calculate="1" nodeset="/data/meta/entity/@create" readonly="true()" type="string"/>
+			<bind nodeset="/data/meta/entity/@id" readonly="true()" type="string"/>
+			<setvalue event="odk-instance-first-load" readonly="true()" ref="/data/meta/entity/@id" type="string" value="uuid()"/>
+			<bind calculate="concat( /data/circumference , &quot;cm &quot;,  /data/species )" nodeset="/data/meta/entity/label" readonly="true()" type="string"/>
+		</model>
+	</h:head>
+	<h:body>
+		<input ref="/data/location">
+			<label>Tree location</label>
+		</input>
+		<select1 ref="/data/species">
+			<label>Tree species</label>
+			<item>
+				<label>Wallaba</label>
+				<value>wallaba</value>
+			</item>
+			<item>
+				<label>Mora</label>
+				<value>mora</value>
+			</item>
+			<item>
+				<label>Purpleheart</label>
+				<value>purpleheart</value>
+			</item>
+			<item>
+				<label>Greenheart</label>
+				<value>greenheart</value>
+			</item>
+		</select1>
+		<input ref="/data/circumference">
+			<label>Tree circumference in cm</label>
+		</input>
+		<input ref="/data/intake_notes">
+			<label>Intake notes</label>
+		</input>
+	</h:body>
+</h:html>
